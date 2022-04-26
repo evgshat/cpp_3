@@ -1,5 +1,36 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap()
+{
+	std::cout << "Default ClapTrap is created" << std::endl;
+}
+
+ClapTrap::ClapTrap(ClapTrap &trap)
+{
+	std::cout << "Copy constructor" << std::endl;
+	*this = trap;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &trap)
+{
+	std::cout << "Assignation operator" << std::endl;
+	if (this != &trap)
+	{
+		this->name = trap.name;
+		this->hit_points = trap.hit_points;
+		this->energy_points = trap.energy_points;
+		this->attack_damage = trap.attack_damage;
+	}
+	return (*this);
+}
+
+ClapTrap::~ClapTrap()
+{
+	std::cout << "ClapTrap is destroyed" << std::endl;
+}
+
+//
+
 ClapTrap::ClapTrap(std::string name)
 {
 	this->name = name;
@@ -7,11 +38,6 @@ ClapTrap::ClapTrap(std::string name)
 	this->energy_points = 10;
 	this->attack_damage = 0;
 	std::cout << "ClapTrap is created. Hit_points = " << this->hit_points << ", energy_points = " << this->energy_points << ", attack_damage = " << this->attack_damage << std::endl;
-}
-
-ClapTrap::~ClapTrap()
-{
-	std::cout << "ClapTrap is destroyed" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
